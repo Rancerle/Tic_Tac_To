@@ -7,12 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.util.Log;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity
 {
     private TicTacToe tttGame;
     private Button [][] buttons;
+    private TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity
 
         GridLayout gridLayout = new GridLayout( this );
         gridLayout.setColumnCount( TicTacToe.SIDE );
-        gridLayout.setRowCount( TicTacToe.SIDE );
+        gridLayout.setRowCount( TicTacToe.SIDE + 1 );
 
         buttons = new Button[TicTacToe.SIDE][TicTacToe.SIDE];
         ButtonHandler bh = new ButtonHandler( );
@@ -44,6 +48,21 @@ public class MainActivity extends AppCompatActivity
                 gridLayout.addView( buttons[row][col], w, w);
             }
         }
+
+        status = new TextView( this );
+        GridLayout.Spec rowSpec = GridLayout.spec( TicTacToe.SIDE, 1 );
+        GridLayout.Spec columnSpec = GridLayout.spec( 0, TicTacToe.SIDE );
+        GridLayout.LayoutParams lpStatus = new GridLayout.LayoutParams( rowSpec, columnSpec );
+        status.setLayoutParams( lpStatus );
+
+        status.setWidth( TicTacToe.SIDE * w );
+        status.setHeight( w );
+        status.setGravity( Gravity.CENTER );
+        status.setBackgroundColor( Color.GREEN );
+        status.setTextSize( ( int ) ( w * .15 ) );
+        status.setText( tttGame.result() );
+
+        gridLayout.addView( status );
 
         setContentView( gridLayout );
     }
@@ -64,7 +83,9 @@ public class MainActivity extends AppCompatActivity
 
         if( tttGame.isGameOver() )
         {
+            status.setBackgroundColor( Color.RED );
             enableButtons( false );
+            status.setText( tttGame.result() );
         }
     }
 
