@@ -11,13 +11,14 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity
 {
+    private TicTacToe tttGame;
     private Button [][] buttons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
+        tttGame = new TicTacToe( );
         buildGuibyCode( );
     }
 
@@ -49,8 +50,33 @@ public class MainActivity extends AppCompatActivity
 
     public void update( int row, int col )
     {
-        Log.w( "MainActivity", "Inside update: " + row + ", " + col );
-        buttons[row][col].setText( "X" );
+        int play = tttGame.play( row, col );
+
+        if ( play == 1 )
+        {
+            buttons[row][col].setText( "X" );
+        }
+
+        else if ( play == 2 )
+        {
+            buttons[row][col].setText( "O" );
+        }
+
+        if( tttGame.isGameOver() )
+        {
+            enableButtons( false );
+        }
+    }
+
+    public void enableButtons ( boolean enabled )
+    {
+        for( int row = 0; row < TicTacToe.SIDE; row++ )
+        {
+            for( int col = 0; col < TicTacToe.SIDE; col++ )
+            {
+                buttons[row][col].setEnabled( enabled );
+            }
+        }
     }
 
     private class ButtonHandler implements View.OnClickListener
