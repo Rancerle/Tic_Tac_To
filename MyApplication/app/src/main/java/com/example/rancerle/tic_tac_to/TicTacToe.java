@@ -68,7 +68,7 @@ public class TicTacToe
         return 0;
     }
 
-    public int checkRows()
+    protected int checkRows()
     {
         for ( int row = 0; row < SIDE; row++ )
         {
@@ -81,7 +81,7 @@ public class TicTacToe
         return 0;
     }
 
-    public int checkColumns()
+    protected int checkColumns()
     {
         for ( int col = 0; col < SIDE; col++ )
         {
@@ -94,7 +94,7 @@ public class TicTacToe
         return 0;
     }
 
-    public int checkDiagonals()
+    protected int checkDiagonals()
     {
         if ( game[0][0] != 0 && game[0][0] == game[1][1] && game[1][1] == game[2][2])
         {
