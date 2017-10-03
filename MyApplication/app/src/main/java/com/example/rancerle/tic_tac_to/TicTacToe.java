@@ -33,7 +33,7 @@ public class TicTacToe
                 turn = 1;
             }
 
-            return currentTurn
+            return currentTurn;
         }
 
         else
