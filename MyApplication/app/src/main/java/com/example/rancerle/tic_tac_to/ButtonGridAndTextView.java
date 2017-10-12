@@ -7,12 +7,14 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-public class ButtonGridAndTextView extends GridLayout {
+public class ButtonGridAndTextView extends GridLayout
+{
     private int side;
     private Button [][] buttons;
     private TextView status;
 
-    public ButtonGridAndTextView( Context context, int width, int newSide, OnClickListener listener ) {
+    public ButtonGridAndTextView( Context context, int width, int newSide, OnClickListener listener )
+    {
         super( context );
         side = newSide;
         setColumnCount( side );
@@ -33,9 +35,8 @@ public class ButtonGridAndTextView extends GridLayout {
 
         status = new TextView( context );
         Spec rowSpec = GridLayout.spec( side, 1 );
-        Spec columnSpec = GridLayout.spec( 0, side );
-        LayoutParams lpStatus
-                = new LayoutParams( rowSpec, columnSpec );
+        Spec colSpec = GridLayout.spec( 0, side );
+        LayoutParams lpStatus = new LayoutParams( rowSpec, colSpec );
         status.setLayoutParams( lpStatus );
 
         status.setWidth( side * width );
@@ -51,15 +52,14 @@ public class ButtonGridAndTextView extends GridLayout {
 
     public void setStatusBackgroundColor( int color ) { status.setBackgroundColor( color ); }
 
-    public void setButtonText( int row, int column, String text ) { buttons[row][column].setText( text ); }
+    public void setButtonText( int row, int col, String text ) { buttons[row][col].setText( text ); }
 
-    public boolean isButton( Button b, int row, int column ) { return ( b == buttons[row][column] ); }
+    public boolean isButton( Button b, int row, int col ) { return ( b == buttons[row][col] ); }
 
     public void resetButtons( )
     {
-        for( int row = 0; row < side; row++ ) {
-
-
+        for( int row = 0; row < side; row++ )
+        {
             for (int col = 0; col < side; col++)
             {
                 buttons[row][col].setText("");
