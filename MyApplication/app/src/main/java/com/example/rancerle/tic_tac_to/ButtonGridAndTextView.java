@@ -1,30 +1,23 @@
 package com.example.rancerle.tic_tac_to;
 
-/**
- * Created by Rancerle on 10/2/2017.
- */
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-public class ButtonGridAndTextView extends GridLayout
-{
+public class ButtonGridAndTextView extends GridLayout {
     private int side;
     private Button [][] buttons;
     private TextView status;
 
-    public ButtonGridAndTextView(Context context, int width, int newSide, View.OnClickListener listener)
-    {
+    public ButtonGridAndTextView( Context context, int width, int newSide, OnClickListener listener ) {
         super( context );
         side = newSide;
-
         setColumnCount( side );
-        setRowCount( side + 1);
+        setRowCount( side + 1 );
+
 
         buttons = new Button[side][side];
         for( int row = 0; row < side; row++ )
@@ -39,47 +32,37 @@ public class ButtonGridAndTextView extends GridLayout
         }
 
         status = new TextView( context );
-        GridLayout.Spec rowSpec = GridLayout.spec(side, 1);
-        GridLayout.Spec colSpec = GridLayout.spec(0, side);
-        GridLayout.LayoutParams lpStatus = new GridLayout.LayoutParams( rowSpec, colSpec );
+        Spec rowSpec = GridLayout.spec( side, 1 );
+        Spec columnSpec = GridLayout.spec( 0, side );
+        LayoutParams lpStatus
+                = new LayoutParams( rowSpec, columnSpec );
         status.setLayoutParams( lpStatus );
 
         status.setWidth( side * width );
         status.setHeight( width );
         status.setGravity( Gravity.CENTER );
         status.setBackgroundColor( Color.GREEN );
-        status.setTextSize( ( int ) ( width / .15 ) );
+        status.setTextSize( ( int ) ( width * .15 ) );
 
         addView( status );
     }
 
-    public void setStatusText( String text )
-    {
-        status.setText( text );
-    }
+    public void setStatusText( String text ) { status.setText( text ); }
 
-    public void setStatusBackgroundColor( int color )
-    {
-        status.setBackgroundColor( color );
-    }
+    public void setStatusBackgroundColor( int color ) { status.setBackgroundColor( color ); }
 
-    public void setButtonText( int row, int col, String text )
-    {
-        buttons[row][col].setText( text );
-    }
+    public void setButtonText( int row, int column, String text ) { buttons[row][column].setText( text ); }
 
-    public boolean isButton( Button b, int row, int col )
-    {
-        return ( b == buttons[row][col] );
-    }
+    public boolean isButton( Button b, int row, int column ) { return ( b == buttons[row][column] ); }
 
     public void resetButtons( )
     {
-        for( int row = 0; row < side; row++ )
-        {
-            for( int col = 0; col < side; col = 0 )
+        for( int row = 0; row < side; row++ ) {
+
+
+            for (int col = 0; col < side; col++)
             {
-                buttons[row][col].setText( "" );
+                buttons[row][col].setText("");
             }
         }
     }
@@ -88,9 +71,9 @@ public class ButtonGridAndTextView extends GridLayout
     {
         for( int row = 0; row < side; row++ )
         {
-            for( int col = 0; col < side; col++ )
+            for (int col = 0; col < side; col++)
             {
-                buttons[row][col].setEnabled( enabled );
+                buttons[row][col].setEnabled(enabled);
             }
         }
     }

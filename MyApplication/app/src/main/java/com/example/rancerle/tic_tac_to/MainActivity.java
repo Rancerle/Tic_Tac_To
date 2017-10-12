@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity
     private ButtonGridAndTextView tttView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    protected void onCreate( Bundle savedInstanceState )
     {
-        super.onCreate(savedInstanceState);
+        super.onCreate( savedInstanceState );
         tttGame = new TicTacToe( );
         Point size = new Point( );
         getWindowManager( ).getDefaultDisplay( ).getSize( size );
@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity
         tttView.setStatusText( tttGame.result() );
         setContentView( tttView );
     }
+
+
 
     public void showNewGameDialog( )
     {
